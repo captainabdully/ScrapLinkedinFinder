@@ -1,0 +1,3 @@
+[submodule "private-data"]
+	path = private-data
+	url = git@github.com:arimgibson/scripts-private-data.git
