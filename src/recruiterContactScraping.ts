@@ -1,4 +1,5 @@
 import { UnipileClient } from "unipile-node-sdk";
+import { phone } from "phone";
 
 type OutputItem = {
 	fullName: string | null;
@@ -50,7 +51,10 @@ for (const url of recruiterLinkedInURLs) {
 				emails:
 					contact.contact_info?.emails?.map((email) => email.toLowerCase()) ||
 					[],
-				phones: contact.contact_info?.phones || [],
+				phones:
+					contact.contact_info?.phones
+						?.map((phoneNum) => formatPhoneNumber(phoneNum))
+						.filter((phoneNum) => phoneNum !== null) || [],
 				currentCompanyRole:
 					contact.work_experience?.[0]?.company &&
 					contact.work_experience?.[0]?.position
@@ -79,3 +83,13 @@ await Bun.write(
 	JSON.stringify(outputData, null, 2),
 );
 console.log("Done!");
+
+function formatPhoneNumber(phoneNumber: string): string | null {
+	const parsingRes = phone(phoneNumber);
+
+	if (!parsingRes.isValid) {
+		return null;
+	}
+
+	return parsingRes.phoneNumber.replace(/^\+1/, '').replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+}
