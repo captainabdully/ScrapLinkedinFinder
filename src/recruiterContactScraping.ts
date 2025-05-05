@@ -33,19 +33,20 @@ for (const url of recruiterLinkedInURLs) {
 		const contact = await unipileClient.users.getProfile({
 			account_id: UNIPILE_ACCOUNT_ID,
 			identifier: profileUrn,
-			linkedin_sections: ["about", "experience"],
+			linkedin_sections: ["experience"],
 		});
 
 		if (
 			contact.provider === "LINKEDIN" &&
-			typeof contact.profile_picture_url === "string"
+			typeof contact.public_identifier === "string"
 		) {
 			outputData.push({
 				fullName:
 					contact.first_name && contact.last_name
 						? `${contact.first_name} ${contact.last_name}`
 						: null,
-				profileUrl: contact.public_profile_url || null,
+				profileUrl:
+					`https://www.linkedin.com/in/${contact.public_identifier}` || null,
 				emails:
 					contact.contact_info?.emails?.map((email) => email.toLowerCase()) ||
 					[],
