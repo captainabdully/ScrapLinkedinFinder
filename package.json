@@ -13,5 +13,8 @@
     "check": "biome check src && tsc --noEmit",
     "check:write": "biome check src --write && tsc --noEmit"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "unipile-node-sdk": "^1.9.2"
+  }
 }

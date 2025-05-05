@@ -1,3 +1,10 @@
 {
-  "editor.defaultFormatter": "biomejs.biome"
+	"editor.defaultFormatter": "biomejs.biome",
+	// override my default user settings
+	"[javascript][typescript][javascriptreact][typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"cSpell.words": [
+		"UNIPILE"
+	]
 }
