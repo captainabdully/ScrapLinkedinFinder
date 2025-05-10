@@ -1,3 +1,4 @@
+import "dotenv/config"; // Load env vars
 import { UnipileClient } from "unipile-node-sdk";
 import { phone } from "phone";
 
@@ -13,7 +14,12 @@ const { UNIPILE_DSN, UNIPILE_API_KEY, UNIPILE_ACCOUNT_ID } = process.env;
 
 if (!UNIPILE_DSN || !UNIPILE_API_KEY || !UNIPILE_ACCOUNT_ID) {
 	throw new Error("Missing environment variables");
+	
 }
+
+console.log("UNIPILE_DSN:", UNIPILE_DSN);
+console.log("UNIPILE_API_KEY:", UNIPILE_API_KEY);
+console.log("UNIPILE_ACCOUNT_ID:", UNIPILE_ACCOUNT_ID);
 
 const unipileClient = new UnipileClient(UNIPILE_DSN, UNIPILE_API_KEY);
 

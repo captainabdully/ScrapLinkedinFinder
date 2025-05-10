@@ -13,7 +13,7 @@ bun install
 To run a script:
 
 ```bash
-bun src/scriptName.ts
+bun run src/scriptName.ts 
 ```
 
 Some scripts may require environment variables to be set. These can be set in a `.env` file in the root of the project.
